@@ -51,7 +51,9 @@ fig = plt.figure(figsize = (32, 32))
 
 for i in df['cluster'].unique():
     tmp = pca_df.loc[pca_df['cluster'] == i]
-    plt.scatter(tmp[0], tmp[1], color=color_dic[i], alpha=0.5)
+    name = [k for k, v in label_dic.items() if v == i][0]
+    plt.scatter(tmp[0], tmp[1], color=color_dic[i], alpha=0.5, label=name)
+    plt.legend(loc='lower right', fontsize=32)
 plt.savefig("./Clustering/PCA_2D.png")
 
 # 3D
@@ -68,5 +70,7 @@ ax = fig.add_subplot(projection='3d')
 
 for i in df['cluster'].unique():
     tmp = pca_df.loc[pca_df['cluster'] == i]
-    ax.scatter(tmp[0], tmp[1], tmp[2], color=color_dic[i], alpha=0.5)
+    name = [k for k, v in label_dic.items() if v == i][0]
+    ax.scatter(tmp[0], tmp[1], tmp[2], color=color_dic[i], alpha=0.5, label=name)
+    ax.legend(loc='lower right', fontsize=32)
 plt.savefig("./Clustering/PCA_3D.png")
